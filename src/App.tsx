@@ -1,25 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Board from "./Board";
+import { GROUND, MOLE } from "./Board/Tile";
+import { LanguageProvider } from "./Providers/LanguageContext";
+import "./PRUEBA.css";
+
+const boardWidth = 4;
+const boardHeight = 4;
+
+const createArray = (size: number, element: any) => {
+  return Array.from(Array(size)).map(() => element);
+};
+
+const createMatrix = (width: number, height: number, element: any) => {
+  const array = createArray(height, undefined);
+  return array.map(() => {
+    return createArray(width, element);
+  });
+};
 
 function App() {
+  const [matrix, setMatrix] = useState(createMatrix(5, 3, 0));
+
+  const boardMatrix = matrix.map((row) => {
+    return row.map((e) => {
+      return e === 0 ? GROUND : MOLE;
+    });
+  });
+
+  const handleClickBoard = (indexX: number, indexY: number) => {
+    const AAA = JSON.parse(JSON.stringify(matrix));
+    AAA[indexY][indexX] = 1 - AAA[indexY][indexX];
+    setMatrix(AAA);
+  };
+
+  const screenHeight = window.innerHeight;
+  const screenWidth = window.innerWidth;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <LanguageProvider>
+      <div>
+        <Board
+          boardMatrix={boardMatrix}
+          onClick={handleClickBoard}
+          width={screenWidth}
+          height={screenHeight}
+        />
+      </div>
+    </LanguageProvider>
   );
 }
 
