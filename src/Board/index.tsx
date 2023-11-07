@@ -14,7 +14,7 @@ const Board: React.FC<BoardProps> = ({
   width,
   height,
 }) => {
-  const rowsNumber = boardMatrix.length;
+  const rowsNumber =  boardMatrix.length;
   const columnsNumber = boardMatrix[0].length;
 
   const size = Math.min(
@@ -26,8 +26,9 @@ const Board: React.FC<BoardProps> = ({
     <div style={{ position: "relative" }}>
       {boardMatrix.map((row, indexY) => {
         return row.map((e, indexX) => {
-          return (
+         return (
             <Tile
+			  key={indexY+":"+indexX}
               size={size}
               value={e}
               indexX={indexX}
