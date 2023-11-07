@@ -1,13 +1,18 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Board from "./Board";
 import { GROUND, MOLE } from "./Board/Tile";
 import { LanguageProvider } from "./Providers/LanguageContext";
 import { copyObject, createMatrix } from "./Utils/utils";
 import { clearBoardAndAddNewMoles } from "./gameUtils";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const molesAtTheSameTime = 2;
 
 function Game() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [userName, setUserName] = useState<string>("");
   const [boardWidth, setBoardWidth] = useState(4);
   const [boardHeight, setBoardHeight] = useState(4);
   const [boardMatrix, setBoardMatrix] = useState(
@@ -20,6 +25,14 @@ function Game() {
     lostMoles: 0,
   });
   const [timer, setTimer] = useState<NodeJS.Timer | undefined>(undefined);
+
+  useEffect(() => {
+    if (location?.state?.userName) {
+      setUserName(location?.state?.userName);
+    } else {
+      navigate("/");
+    }
+  }, [location]);
 
   const handleClickBoard = useCallback(
     (indexX: number, indexY: number) => {
@@ -79,6 +92,7 @@ function Game() {
   return (
     <LanguageProvider>
       <div>
+        <h1>userName: {userName}</h1>
         <h1>
           SCORE: {score} LOST MOLES: {lostMoles.lostMoles}
         </h1>
