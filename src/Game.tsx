@@ -1,20 +1,24 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import Board from "./Board";
 import { GROUND, MOLE } from "./Board/Tile";
-import { LanguageProvider } from "./Providers/LanguageContext";
+import { SettingsContext } from "./Providers/SettingsContext";
 import { copyObject, createMatrix } from "./Utils/utils";
-import { clearBoardAndAddNewMoles } from "./gameUtils";
+import {
+  clearBoardAndAddNewMoles,
+  getScoreSuccess,
+  getvisibilityTime,
+} from "./gameUtils";
 import { useLocation, useNavigate } from "react-router-dom";
+import Options from "./Options";
 
-const molesAtTheSameTime = 2;
-
-function Game() {
+const Game: React.FC<{}> = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const { molesAtTheSameTime, boardWidth, boardHeight, difficulty } =
+    useContext(SettingsContext);
+
   const [userName, setUserName] = useState<string>("");
-  const [boardWidth, setBoardWidth] = useState(4);
-  const [boardHeight, setBoardHeight] = useState(4);
   const [boardMatrix, setBoardMatrix] = useState(
     createMatrix(boardWidth, boardHeight, GROUND)
   );
@@ -32,7 +36,11 @@ function Game() {
     } else {
       navigate("/");
     }
-  }, [location]);
+  }, [location, navigate]);
+
+  useEffect(() => {
+    setBoardMatrix(createMatrix(boardWidth, boardHeight, GROUND));
+  }, [boardWidth, boardHeight]);
 
   const handleClickBoard = useCallback(
     (indexX: number, indexY: number) => {
@@ -41,7 +49,7 @@ function Game() {
       if (tileValue === MOLE) {
         NewMatrix[indexY][indexX] = GROUND;
         setBoardMatrix(NewMatrix);
-        setScore(score + 10);
+        setScore(score + getScoreSuccess(difficulty));
       }
     },
     [boardMatrix, score]
@@ -71,44 +79,59 @@ function Game() {
       });
       return newTimerCycles + 1;
     });
-  }, [timerCycles]);
+  }, [timerCycles, molesAtTheSameTime]);
 
   const handleClickStart = useCallback(() => {
     addRandomMole();
     const timer = setInterval(() => {
       addRandomMole();
-    }, 3000);
+    }, getvisibilityTime(difficulty));
     setTimer(timer);
-  }, [addRandomMole]);
+  }, [addRandomMole, difficulty]);
 
   const handleClickStop = useCallback(() => {
     clearInterval(timer);
     setTimer(undefined);
   }, [timer]);
 
+  const handleClickReset = useCallback(() => {
+    setTimerCycles(0);
+    setScore(0);
+    setLostMoles({
+      lastTimerCycle: 0,
+      lostMoles: 0,
+    });
+    handleClickStart();
+  }, [handleClickStart]);
+
   const screenHeight = window.innerHeight;
   const screenWidth = window.innerWidth;
 
   return (
-    <LanguageProvider>
-      <div>
-        <h1>userName: {userName}</h1>
-        <h1>
-          SCORE: {score} LOST MOLES: {lostMoles.lostMoles}
-        </h1>
-        {timer === undefined && (
-          <button onClick={handleClickStart}>START</button>
-        )}
-        {timer !== undefined && <button onClick={handleClickStop}>STOP</button>}
-        <Board
-          boardMatrix={boardMatrix}
-          onClick={handleClickBoard}
-          width={screenWidth}
-          height={screenHeight - 150}
-        />
-      </div>
-    </LanguageProvider>
+    <div>
+      <Options disabledOpen={timer !== undefined} />
+      <h1>userName: {userName}</h1>
+      <h1>difficulty: {difficulty}</h1>
+      <h1>
+        SCORE: {score} LOST MOLES: {lostMoles.lostMoles}
+      </h1>
+      {timer === undefined && timerCycles > 0 && (
+        <button onClick={handleClickReset}>New game</button>
+      )}
+      {timer === undefined && (
+        <button onClick={handleClickStart}>
+          {timerCycles === 0 ? "New game" : "CONTINUE"}
+        </button>
+      )}
+      {timer !== undefined && <button onClick={handleClickStop}>STOP</button>}
+      <Board
+        boardMatrix={boardMatrix}
+        onClick={handleClickBoard}
+        width={screenWidth}
+        height={screenHeight - 150}
+      />
+    </div>
   );
-}
+};
 
 export default Game;

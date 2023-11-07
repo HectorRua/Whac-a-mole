@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Options from "./Options";
 
 const Home: React.FC<{}> = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const Home: React.FC<{}> = () => {
   return (
     <div>
       <h1>HOME</h1>
+      <Options disabledOpen={false} />
       <input type="text" onChange={handleChangeUserName} />
       <button onClick={handleClickPlay}>PLAY</button>
       {userNameEmptyError && <span>ERROR USUARIO VACIO</span>}

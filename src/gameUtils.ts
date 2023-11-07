@@ -1,4 +1,16 @@
 import { GROUND, MOLE, TileType } from "./Board/Tile";
+import {
+  DifficultyType,
+  EASY,
+  HARD,
+  MEDIUM,
+  SCORE_SUCCESS_EASY,
+  SCORE_SUCCESS_HARD,
+  SCORE_SUCCESS_MEDIUM,
+  VISIBILITY_TIME_EASY,
+  VISIBILITY_TIME_HARD,
+  VISIBILITY_TIME_MEDIUM,
+} from "./Providers/SettingsContext";
 import { copyObject, createRange, shuffleArray } from "./Utils/utils";
 
 const clearBoardAndCountMoles = (boardMatrix: Array<Array<TileType>>) => {
@@ -46,4 +58,30 @@ export const clearBoardAndAddNewMoles = (
     lostMoles: lostMolesPositions.length,
     newBoardMatrix: newMatrix,
   };
+};
+
+export const getScoreSuccess = (difficulty: DifficultyType) => {
+  switch (difficulty) {
+    case EASY:
+      return SCORE_SUCCESS_EASY;
+    case MEDIUM:
+      return SCORE_SUCCESS_MEDIUM;
+    case HARD:
+      return SCORE_SUCCESS_HARD;
+    default:
+      return 0;
+  }
+};
+
+export const getvisibilityTime = (difficulty: DifficultyType) => {
+  switch (difficulty) {
+    case EASY:
+      return VISIBILITY_TIME_EASY;
+    case MEDIUM:
+      return VISIBILITY_TIME_MEDIUM;
+    case HARD:
+      return VISIBILITY_TIME_HARD;
+    default:
+      return 10000;
+  }
 };

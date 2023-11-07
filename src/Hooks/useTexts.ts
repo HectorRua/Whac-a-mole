@@ -1,12 +1,12 @@
 import { useCallback, useContext } from "react";
 import { getTextLanguage } from "../Languages";
-import { LanguageContext } from "../Providers/LanguageContext";
+import { SettingsContext } from "../Providers/SettingsContext";
 
 export interface TextsHook {
   getText: (textKey: string) => string;
 }
 export const useTexts = (): TextsHook => {
-  const { language } = useContext(LanguageContext);
+  const { language } = useContext(SettingsContext);
 
   const getText = useCallback(
     (textKey: string) => {
