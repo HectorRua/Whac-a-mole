@@ -27,7 +27,7 @@ export const getTextLanguage = (textKey: string, language: string) => {
     case SPANISH:
       return getTextFromDictionary(textKey, SPANISH_TEXTS);
     default:
-      return "AAA";
+      return "---";
     //return getTextFromDictionary(textKey, ENGLISH_TEXTS);
   }
 };

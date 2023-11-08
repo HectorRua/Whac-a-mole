@@ -44,7 +44,6 @@ const Tile: React.FC<TileProps> = ({
           src={GROUND_IMG}
           alt={getText(TEXTS.GROUND)}
           height={size}
-          title={getText(TEXTS.GROUND)}
           style={style}
           onClick={handleClick}
         />
@@ -55,7 +54,6 @@ const Tile: React.FC<TileProps> = ({
           src={MOLE_IMG}
           alt={getText(TEXTS.MOLE)}
           height={size}
-          title={getText(TEXTS.MOLE)}
           style={style}
           onClick={handleClick}
         />

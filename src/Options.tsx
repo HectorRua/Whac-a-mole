@@ -10,8 +10,11 @@ import {
   MEDIUM,
   HARD,
 } from "./Providers/SettingsContext";
-import { ENGLISH, SPANISH } from "./Languages";
+import { TEXTS, ENGLISH, SPANISH } from "./Languages";
 import NumericInput from "./Commons/NumericInput";
+import Modal from "./Commons/Modal";
+import OptionSelector from "./Commons/OptionSelector";
+import { useTexts } from "./Hooks/useTexts";
 
 interface OptionsProps {
   disabledOpen: boolean;
@@ -30,6 +33,8 @@ const Options: React.FC<OptionsProps> = ({ disabledOpen }) => {
     difficulty,
     setDifficulty,
   } = useContext(SettingsContext);
+  const { getText } = useTexts();
+
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const handleOpenOptions = useCallback(() => {
     setShowOptions(true);
@@ -45,95 +50,46 @@ const Options: React.FC<OptionsProps> = ({ disabledOpen }) => {
         OPTIONS
       </button>
       {showOptions && (
-        <div>
-          <h1>####################</h1>
-          <h1>OPTIONS</h1>
-          <button onClick={handleCloseOptions}>CLOSE</button>
-          <div>
-            <h3>-----------</h3>
-            <span>Language:</span>
-            <button
-              onClick={() => {
-                setLanguage(ENGLISH);
-              }}
-              disabled={language === ENGLISH}
-            >
-              ENGLISH
-            </button>
-            <button
-              onClick={() => {
-                setLanguage(SPANISH);
-              }}
-              disabled={language === SPANISH}
-            >
-              SPANISH
-            </button>
-            <h3>-----------</h3>
-          </div>
-          <div>
-            <h3>-----------</h3>
-            <NumericInput
-              title="Moles At The Same Time"
-              value={molesAtTheSameTime}
-              setValue={setMolesAtTheSameTime}
-              minValue={1}
-              maxValue={MAX_MOLES_AT_THE_SAME_TIME}
-            />
-            <h3>-----------</h3>
-          </div>
-          <div>
-            <h3>-----------</h3>
-            <NumericInput
-              title="Board Width"
-              value={boardWidth}
-              setValue={setBoardWidth}
-              minValue={MIN_BOARD_WIDTH}
-              maxValue={MAX_BOARD_WIDTH}
-            />
-            <h3>-----------</h3>
-          </div>
-          <div>
-            <h3>-----------</h3>
-            <NumericInput
-              title="Board Height"
-              value={boardHeight}
-              setValue={setBoardHeight}
-              minValue={MIN_BOARD_HEIGHT}
-              maxValue={MAX_BOARD_HEIGHT}
-            />
-            <h3>-----------</h3>
-          </div>
-          <div>
-            <h3>-----------</h3>
-            <span>Difficulty:</span>
-            <button
-              onClick={() => {
-                setDifficulty(EASY);
-              }}
-              disabled={difficulty === EASY}
-            >
-              EASY
-            </button>
-            <button
-              onClick={() => {
-                setDifficulty(MEDIUM);
-              }}
-              disabled={difficulty === MEDIUM}
-            >
-              MEDIUM
-            </button>
-            <button
-              onClick={() => {
-                setDifficulty(HARD);
-              }}
-              disabled={difficulty === HARD}
-            >
-              HARD
-            </button>
-            <h3>-----------</h3>
-          </div>
-          <h1>####################</h1>
-        </div>
+        <Modal closeModal={handleCloseOptions}>
+          <h1>{getText(TEXTS.OPTIONS_TITLE).toUpperCase()}</h1>
+          <OptionSelector
+            title={getText(TEXTS.LANGUAGE)}
+            value={language}
+            setValue={setLanguage}
+            options={[ENGLISH, SPANISH].map((e) => {
+              return { label: getText(e), value: e };
+            })}
+          />
+          <NumericInput
+            title={getText(TEXTS.MOLES_AT_THE_SAME_TIME)}
+            value={molesAtTheSameTime}
+            setValue={setMolesAtTheSameTime}
+            minValue={1}
+            maxValue={MAX_MOLES_AT_THE_SAME_TIME}
+          />
+          <NumericInput
+            title={getText(TEXTS.BOARD_WIDTH)}
+            value={boardWidth}
+            setValue={setBoardWidth}
+            minValue={MIN_BOARD_WIDTH}
+            maxValue={MAX_BOARD_WIDTH}
+          />
+          <NumericInput
+            title={getText(TEXTS.BOARD_HEIGHT)}
+            value={boardHeight}
+            setValue={setBoardHeight}
+            minValue={MIN_BOARD_HEIGHT}
+            maxValue={MAX_BOARD_HEIGHT}
+          />
+          <OptionSelector
+            title={getText(TEXTS.DIFFICULTY)}
+            value={difficulty}
+            setValue={setDifficulty}
+            options={[EASY, MEDIUM, HARD].map((e) => {
+              return { label: getText(e), value: e };
+            })}
+          />
+        </Modal>
       )}
     </div>
   );

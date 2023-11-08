@@ -1,0 +1,18 @@
+.numeric-input-container {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.numeric-input-title {
+  padding: 5px;
+  font-size: 1.4em;
+}
+
+.numeric-input-button {
+  height: 40px;
+  width: 40px;
+  margin: 5px;
+  padding: 0px 0px 15px 0px;
+  font-size: 2em;
+  cursor: pointer;
+}

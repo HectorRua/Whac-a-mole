@@ -1,4 +1,5 @@
 import React from "react";
+import "./numeric-input.css";
 
 interface NumericInputProps {
   title: string;
@@ -16,30 +17,32 @@ const NumericInput: React.FC<NumericInputProps> = ({
   maxValue,
 }) => {
   return (
-    <div>
-      <span>
-        {title}: {value}
+    <div className="numeric-input-container">
+      <span className="numeric-input-title">
+        <b>
+          {title}: {value}
+        </b>
       </span>
-      <div>
-        <button
-          disabled={value === minValue}
-          onClick={() => {
-            const newValue = value > minValue ? value - 1 : value;
-            setValue(newValue);
-          }}
-        >
-          -
-        </button>
-        <button
-          disabled={value === maxValue}
-          onClick={() => {
-            const newValue = value < maxValue ? value + 1 : value;
-            setValue(newValue);
-          }}
-        >
-          +
-        </button>
-      </div>
+      <button
+        className="numeric-input-button"
+        disabled={value === minValue}
+        onClick={() => {
+          const newValue = value > minValue ? value - 1 : value;
+          setValue(newValue);
+        }}
+      >
+        <b>-</b>
+      </button>
+      <button
+        className="numeric-input-button"
+        disabled={value === maxValue}
+        onClick={() => {
+          const newValue = value < maxValue ? value + 1 : value;
+          setValue(newValue);
+        }}
+      >
+        <b>+</b>
+      </button>
     </div>
   );
 };

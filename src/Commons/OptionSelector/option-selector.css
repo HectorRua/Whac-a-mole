@@ -1,0 +1,21 @@
+.option-selector-container {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.option-selector-title {
+  padding: 5px;
+  font-size: 1.4em;
+}
+
+.option-selector-element {
+  padding: 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
+.option-selector-selected-element {
+  color: red;
+  text-decoration: underline;
+  text-decoration-color: red;
+}
