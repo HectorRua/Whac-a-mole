@@ -1,0 +1,19 @@
+.game-controls-container {
+  margin: 15px 10px 10px 10px;
+}
+
+.game-controls-row {
+  padding: 5px 0px;
+}
+
+.game-controls-text {
+  display: inline;
+  font-size: 1.3em;
+  padding: 10px;
+  margin: 0px;
+}
+
+.game-controls-buttons {
+  margin: 0px 10px;
+  font-size: 1.2em;
+}

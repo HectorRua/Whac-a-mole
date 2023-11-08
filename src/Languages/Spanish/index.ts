@@ -16,6 +16,11 @@ export const DICTIONARY = {
   EASY: "Facil",
   MEDIUM: "Medio",
   HARD: "Difícil",
+  SCORE: "Puntuación",
+  LOST_MOLES: "Topos Perdidos",
+  NEW_GAME: "Nuevo juego",
+  PAUSE: "Pausar",
+  CONTINUE: "Continuar",
 };
 
 export default DICTIONARY;

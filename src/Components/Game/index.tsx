@@ -9,7 +9,7 @@ import {
   getvisibilityTime,
 } from "./gameUtils";
 import { useLocation, useNavigate } from "react-router-dom";
-import Options from "../Options";
+import GameControls from "./GameControls";
 
 const Game: React.FC<{}> = () => {
   const location = useLocation();
@@ -109,26 +109,22 @@ const Game: React.FC<{}> = () => {
 
   return (
     <div>
-      <Options disabledOpen={timer !== undefined} />
-      <h1>userName: {userName}</h1>
-      <h1>difficulty: {difficulty}</h1>
-      <h1>
-        SCORE: {score} LOST MOLES: {lostMoles.lostMoles}
-      </h1>
-      {timer === undefined && timerCycles > 0 && (
-        <button onClick={handleClickReset}>New game</button>
-      )}
-      {timer === undefined && (
-        <button onClick={handleClickStart}>
-          {timerCycles === 0 ? "New game" : "CONTINUE"}
-        </button>
-      )}
-      {timer !== undefined && <button onClick={handleClickStop}>STOP</button>}
+      <GameControls
+        userName={userName}
+        difficulty={difficulty}
+        score={score}
+        lostMoles={lostMoles.lostMoles}
+        timer={timer}
+        timerCycles={timerCycles}
+        handleClickStart={handleClickStart}
+        handleClickStop={handleClickStop}
+        handleClickReset={handleClickReset}
+      />
       <Board
         boardMatrix={boardMatrix}
         onClick={handleClickBoard}
-        width={screenWidth}
-        height={screenHeight - 150}
+        width={screenWidth * (3.5 / 4)}
+        height={screenHeight * (3.1 / 4)}
       />
     </div>
   );

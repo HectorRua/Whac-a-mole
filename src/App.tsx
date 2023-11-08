@@ -12,6 +12,7 @@ const App: React.FC<{}> = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/game" element={<Game />} />
+          <Route path="*" element={<Home />} />
         </Routes>
       </div>
     </SettingsProvider>

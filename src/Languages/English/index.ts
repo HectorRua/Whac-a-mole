@@ -16,6 +16,11 @@ const DICTIONARY = {
   EASY: "Easy",
   MEDIUM: "Medium",
   HARD: "Hard",
+  SCORE: "Score",
+  LOST_MOLES: "Lost Moles",
+  NEW_GAME: "New game",
+  PAUSE: "Pause",
+  CONTINUE: "Continue",
 };
 
 export default DICTIONARY;
