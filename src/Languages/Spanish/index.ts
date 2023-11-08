@@ -1,7 +1,11 @@
 export const DICTIONARY = {
+  APP_TITLE: "Whac-A-Mole",
   MOLE: "topo",
   GROUND: "tierra",
-  OPTIONS_TITLE: "Opciones",
+  PLAYER_NAME: "Nombre de Jugador",
+  ERROR_EMPTY_PLAYER_NAME: "Error: El nombre del jugador esta vacio",
+  PLAY: "Jugar",
+  OPTIONS: "Opciones",
   LANGUAGE: "Idioma",
   ENGLISH: "Inglés",
   SPANISH: "Español",

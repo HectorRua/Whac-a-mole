@@ -1,15 +1,15 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import Board from "./Board";
-import { GROUND, MOLE } from "./Board/Tile";
-import { SettingsContext } from "./Providers/SettingsContext";
-import { copyObject, createMatrix } from "./Utils/utils";
+import Board from "../Board";
+import { GROUND, MOLE } from "../Board/Tile";
+import { SettingsContext } from "../../Providers/SettingsContext";
+import { copyObject, createMatrix } from "../../Utils/utils";
 import {
   clearBoardAndAddNewMoles,
   getScoreSuccess,
   getvisibilityTime,
 } from "./gameUtils";
 import { useLocation, useNavigate } from "react-router-dom";
-import Options from "./Options";
+import Options from "../Options";
 
 const Game: React.FC<{}> = () => {
   const location = useLocation();
@@ -52,7 +52,7 @@ const Game: React.FC<{}> = () => {
         setScore(score + getScoreSuccess(difficulty));
       }
     },
-    [boardMatrix, score]
+    [boardMatrix, score, difficulty]
   );
 
   const addRandomMole = useCallback(() => {

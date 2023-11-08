@@ -1,7 +1,11 @@
 const DICTIONARY = {
+  APP_TITLE: "Whac-A-Mole",
   MOLE: "mole",
   GROUND: "ground",
-  OPTIONS_TITLE: "Options",
+  PLAYER_NAME: "Player Name",
+  ERROR_EMPTY_PLAYER_NAME: "Error: Player name is empty",
+  PLAY: "Play",
+  OPTIONS: "Options",
   LANGUAGE: "Language",
   ENGLISH: "English",
   SPANISH: "Spanish",

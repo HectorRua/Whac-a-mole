@@ -1,0 +1,27 @@
+.home-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.home-title-text {
+  display: inline;
+  margin: 0px;
+  font-size: 2em;
+  padding: 0px 10px 0px 10px;
+}
+
+.home-title-img {
+  width: 2em;
+  margin: 0px;
+  padding: 0px 5px 0px 5px;
+}
+
+.home-button {
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 2em;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Game from "./Game";
-import Home from "./Home";
+import Game from "./Components/Game";
+import Home from "./Components/Home";
 import { SettingsProvider } from "./Providers/SettingsContext";
 import "./app.css";
 

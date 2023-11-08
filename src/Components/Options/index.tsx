@@ -9,18 +9,19 @@ import {
   EASY,
   MEDIUM,
   HARD,
-} from "./Providers/SettingsContext";
-import { TEXTS, ENGLISH, SPANISH } from "./Languages";
-import NumericInput from "./Commons/NumericInput";
-import Modal from "./Commons/Modal";
-import OptionSelector from "./Commons/OptionSelector";
-import { useTexts } from "./Hooks/useTexts";
+} from "../../Providers/SettingsContext";
+import { TEXTS, ENGLISH, SPANISH } from "../../Languages";
+import NumericInput from "../Commons/NumericInput";
+import Modal from "../Commons/Modal";
+import OptionSelector from "../Commons/OptionSelector";
+import { useTexts } from "../../Hooks/useTexts";
 
 interface OptionsProps {
-  disabledOpen: boolean;
+  classNameButton?: string;
+  disabledOpen?: boolean;
 }
 
-const Options: React.FC<OptionsProps> = ({ disabledOpen }) => {
+const Options: React.FC<OptionsProps> = ({ disabledOpen, classNameButton }) => {
   const {
     language,
     setLanguage,
@@ -45,13 +46,17 @@ const Options: React.FC<OptionsProps> = ({ disabledOpen }) => {
   }, []);
 
   return (
-    <div>
-      <button onClick={handleOpenOptions} disabled={disabledOpen}>
-        OPTIONS
+    <>
+      <button
+        className={classNameButton}
+        onClick={handleOpenOptions}
+        disabled={disabledOpen}
+      >
+        {getText(TEXTS.OPTIONS)}
       </button>
       {showOptions && (
         <Modal closeModal={handleCloseOptions}>
-          <h1>{getText(TEXTS.OPTIONS_TITLE).toUpperCase()}</h1>
+          <h1>{getText(TEXTS.OPTIONS).toUpperCase()}</h1>
           <OptionSelector
             title={getText(TEXTS.LANGUAGE)}
             value={language}
@@ -91,7 +96,7 @@ const Options: React.FC<OptionsProps> = ({ disabledOpen }) => {
           />
         </Modal>
       )}
-    </div>
+    </>
   );
 };
 

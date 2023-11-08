@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
-import GROUND_IMG from "../../Assets/Img/ground.png";
-import MOLE_IMG from "../../Assets/Img/mole.png";
-import { useTexts } from "../../Hooks/useTexts";
-import { TEXTS } from "../../Languages";
+import GROUND_IMG from "../../../Assets/Img/ground.png";
+import MOLE_IMG from "../../../Assets/Img/mole.png";
+import { useTexts } from "../../../Hooks/useTexts";
+import { TEXTS } from "../../../Languages";
 import "./tile.css";
 
 export type TileType = "GROUND" | "MOLE";

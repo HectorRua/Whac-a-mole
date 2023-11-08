@@ -1,4 +1,4 @@
-import { GROUND, MOLE, TileType } from "./Board/Tile";
+import { GROUND, MOLE, TileType } from "../Board/Tile";
 import {
   DifficultyType,
   EASY,
@@ -10,8 +10,8 @@ import {
   VISIBILITY_TIME_EASY,
   VISIBILITY_TIME_HARD,
   VISIBILITY_TIME_MEDIUM,
-} from "./Providers/SettingsContext";
-import { copyObject, createRange, shuffleArray } from "./Utils/utils";
+} from "../../Providers/SettingsContext";
+import { copyObject, createRange, shuffleArray } from "../../Utils/utils";
 
 const clearBoardAndCountMoles = (boardMatrix: Array<Array<TileType>>) => {
   const rowsNumber = boardMatrix.length;

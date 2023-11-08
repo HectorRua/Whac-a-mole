@@ -1,0 +1,15 @@
+.text-input-container {
+  margin: 10px;
+}
+
+.text-input-title {
+  margin: 10px;
+}
+
+.text-input-error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  color: red;
+}
