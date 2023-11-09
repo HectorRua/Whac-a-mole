@@ -13,7 +13,9 @@ import {
 } from "../../Providers/SettingsContext";
 import { copyObject, createRange, shuffleArray } from "../../Utils/utils";
 
-const clearBoardAndCountMoles = (boardMatrix: Array<Array<TileType>>) => {
+export const clearBoardAndCountMoles = (
+  boardMatrix: Array<Array<TileType>>
+) => {
   const rowsNumber = boardMatrix.length;
   const columnsNumber = boardMatrix[0].length;
   let molesPositions: Array<Number> = [];

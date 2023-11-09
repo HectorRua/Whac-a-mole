@@ -116,9 +116,9 @@ const Game: React.FC<{}> = () => {
         lostMoles={lostMoles.lostMoles}
         timer={timer}
         timerCycles={timerCycles}
-        handleClickStart={handleClickStart}
-        handleClickStop={handleClickStop}
-        handleClickReset={handleClickReset}
+        onClickStart={handleClickStart}
+        onClickStop={handleClickStop}
+        onClickReset={handleClickReset}
       />
       <Board
         boardMatrix={boardMatrix}

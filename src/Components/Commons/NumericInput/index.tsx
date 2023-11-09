@@ -18,13 +18,14 @@ const NumericInput: React.FC<NumericInputProps> = ({
 }) => {
   return (
     <div className="numeric-input-container">
-      <span className="numeric-input-title">
+      <span className="numeric-input-title" data-testid="numeric-input-title">
         <b>
           {title}: {value}
         </b>
       </span>
       <button
         className="numeric-input-button"
+        data-testid="numeric-input-decrease-button"
         disabled={value === minValue}
         onClick={() => {
           const newValue = value > minValue ? value - 1 : value;
@@ -35,6 +36,7 @@ const NumericInput: React.FC<NumericInputProps> = ({
       </button>
       <button
         className="numeric-input-button"
+        data-testid="numeric-input-increase-button"
         disabled={value === maxValue}
         onClick={() => {
           const newValue = value < maxValue ? value + 1 : value;

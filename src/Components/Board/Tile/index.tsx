@@ -41,6 +41,7 @@ const Tile: React.FC<TileProps> = ({
       {value === GROUND && (
         <img
           className="tile"
+          data-testid="tile_img"
           src={GROUND_IMG}
           alt={getText(TEXTS.GROUND)}
           height={size}
@@ -50,6 +51,7 @@ const Tile: React.FC<TileProps> = ({
       )}
       {value === MOLE && (
         <img
+          data-testid="tile_img"
           className="tile"
           src={MOLE_IMG}
           alt={getText(TEXTS.MOLE)}

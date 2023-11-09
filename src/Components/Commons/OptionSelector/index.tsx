@@ -21,14 +21,20 @@ const OptionSelector: React.FC<OptionSelectorProps> = ({
 }) => {
   return (
     <div className="option-selector-container">
-      <span className="option-selector-title">
+      <span
+        className="option-selector-title"
+        data-testid="option-selector-title"
+      >
         <b>{title}: </b>
       </span>
       {options.map((o) => {
         if (o.value === value) {
           return (
             <b key={o.value}>
-              <span className="option-selector-element option-selector-selected-element">
+              <span
+                className="option-selector-element option-selector-selected-element"
+                data-testid="option-selector-selected-element"
+              >
                 {o.label}
               </span>
             </b>
@@ -38,6 +44,7 @@ const OptionSelector: React.FC<OptionSelectorProps> = ({
             <span
               key={o.value}
               className="option-selector-element"
+              data-testid="option-selector-element"
               onClick={() => setValue(o.value)}
             >
               {o.label}

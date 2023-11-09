@@ -12,9 +12,9 @@ interface GameControlsProps {
   lostMoles: number;
   timer: NodeJS.Timer | undefined;
   timerCycles: number;
-  handleClickStart: () => void;
-  handleClickStop: () => void;
-  handleClickReset: () => void;
+  onClickStart: () => void;
+  onClickStop: () => void;
+  onClickReset: () => void;
 }
 
 const GameControls: React.FC<GameControlsProps> = ({
@@ -24,9 +24,9 @@ const GameControls: React.FC<GameControlsProps> = ({
   lostMoles,
   timer,
   timerCycles,
-  handleClickStart,
-  handleClickStop,
-  handleClickReset,
+  onClickStart,
+  onClickStop,
+  onClickReset,
 }) => {
   const { getText } = useTexts();
   return (
@@ -54,19 +54,31 @@ const GameControls: React.FC<GameControlsProps> = ({
       </div>
       <div className="game-controls-row">
         {timer === undefined && timerCycles > 0 && (
-          <button className="game-controls-buttons" onClick={handleClickReset}>
+          <button
+            className="game-controls-buttons"
+            onClick={onClickReset}
+            data-testid="game-controls-button-reset"
+          >
             {getText(TEXTS.NEW_GAME)}
           </button>
         )}
         {timer === undefined && (
-          <button className="game-controls-buttons" onClick={handleClickStart}>
+          <button
+            className="game-controls-buttons"
+            onClick={onClickStart}
+            data-testid="game-controls-button-start"
+          >
             {timerCycles === 0
               ? getText(TEXTS.NEW_GAME)
               : getText(TEXTS.CONTINUE)}
           </button>
         )}
         {timer !== undefined && (
-          <button className="game-controls-buttons" onClick={handleClickStop}>
+          <button
+            className="game-controls-buttons"
+            onClick={onClickStop}
+            data-testid="game-controls-button-pause"
+          >
             {getText(TEXTS.PAUSE)}
           </button>
         )}
