@@ -68,7 +68,9 @@ const Home: React.FC<{}> = () => {
           alt={getText(TEXTS.MOLE)}
           className="home-title-img"
         />
-        <h1 className="home-title-text">{getText(TEXTS.APP_TITLE)}</h1>
+        <h1 className="home-title-text" data-testid="app-title">
+          {getText(TEXTS.APP_TITLE)}
+        </h1>
         <img
           src={MOLE_IMG}
           alt={getText(TEXTS.MOLE)}
@@ -108,6 +110,7 @@ const Home: React.FC<{}> = () => {
         />
       </div>
       <TextInput
+        data-testid="player-name-input"
         title={getText(TEXTS.PLAYER_NAME)}
         value={userName}
         onChange={handleChangeUserName}
@@ -118,10 +121,14 @@ const Home: React.FC<{}> = () => {
         }
       />
       <div>
-        <button className="home-button" onClick={handleClickPlay}>
+        <button
+          data-testid="play-button"
+          className="home-button"
+          onClick={handleClickPlay}
+        >
           {getText(TEXTS.PLAY)}
         </button>
-        <Options classNameButton="home-button" />
+        <Options data-testid="options-button" classNameButton="home-button" />
       </div>
     </div>
   );

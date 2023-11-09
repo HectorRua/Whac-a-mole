@@ -17,10 +17,20 @@ const TextInput: React.FC<TextInputProps> = ({
   return (
     <div className="text-input-container">
       <label className="text-input-title">{title}: </label>
-      <input type="text" value={value} onChange={onChange} />
-      <div className="text-input-error-container">
-        {errorText && <span>{errorText}</span>}
-      </div>
+      <input
+        type="text"
+        value={value}
+        onChange={onChange}
+        data-testid="text-input"
+      />
+      {errorText && (
+        <div
+          className="text-input-error-container"
+          data-testid="text-input-error"
+        >
+          <span>{errorText}</span>
+        </div>
+      )}
     </div>
   );
 };

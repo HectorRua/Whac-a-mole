@@ -8,7 +8,7 @@ import {
   getScoreSuccess,
   getvisibilityTime,
 } from "./gameUtils";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import GameControls from "./GameControls";
 
 const Game: React.FC<{}> = () => {

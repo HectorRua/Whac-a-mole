@@ -30,7 +30,10 @@ const GameControls: React.FC<GameControlsProps> = ({
 }) => {
   const { getText } = useTexts();
   return (
-    <div className="game-controls-container">
+    <div
+      className="game-controls-container"
+      data-testid="game-controls-container"
+    >
       <div className="game-controls-row">
         <h1 className="game-controls-text">
           {getText(TEXTS.PLAYER_NAME)}: {userName}

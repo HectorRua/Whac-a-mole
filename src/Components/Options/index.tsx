@@ -51,12 +51,15 @@ const Options: React.FC<OptionsProps> = ({ disabledOpen, classNameButton }) => {
         className={classNameButton}
         onClick={handleOpenOptions}
         disabled={disabledOpen}
+        data-testid="options-button-open-modal"
       >
         {getText(TEXTS.OPTIONS)}
       </button>
       {showOptions && (
         <Modal closeModal={handleCloseOptions}>
-          <h1>{getText(TEXTS.OPTIONS).toUpperCase()}</h1>
+          <h1 data-testid="options-title">
+            {getText(TEXTS.OPTIONS).toUpperCase()}
+          </h1>
           <OptionSelector
             title={getText(TEXTS.LANGUAGE)}
             value={language}
