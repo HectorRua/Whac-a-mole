@@ -28,6 +28,5 @@ export const getTextLanguage = (textKey: string, language: string) => {
       return getTextFromDictionary(textKey, SPANISH_TEXTS);
     default:
       return "---";
-    //return getTextFromDictionary(textKey, ENGLISH_TEXTS);
   }
 };

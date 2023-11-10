@@ -15,7 +15,7 @@ describe("Modal", () => {
     );
 
     const background = screen.getByTestId("modal-background");
-    //const { getByText } = within(screen.getByTestId("app-title"));
+
     expect(background).toBeInTheDocument();
     expect(screen.getByTestId("modal")).toBeInTheDocument();
     expect(screen.getByTestId("test")).toBeInTheDocument();

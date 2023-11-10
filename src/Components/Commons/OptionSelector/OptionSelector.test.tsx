@@ -19,7 +19,6 @@ describe("OptionSelector", () => {
       />
     );
 
-    //data-testid="option-selector-selected-element"
     const titleAndValue = screen.getByTestId("option-selector-title");
     expect(titleAndValue).toHaveTextContent("TEST");
 

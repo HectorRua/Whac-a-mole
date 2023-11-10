@@ -21,7 +21,7 @@ const Home: React.FC<{}> = () => {
   };
 
   const handleClickPlay = () => {
-    if (userName !== "") {
+    if (userName.trim() !== "") {
       navigate("/game", { state: { userName: userName } });
     } else {
       setUserNameEmptyError(true);
