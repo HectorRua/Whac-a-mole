@@ -22,7 +22,7 @@ const Home: React.FC<{}> = () => {
 
   const handleClickPlay = () => {
     if (userName.trim() !== "") {
-      navigate("/game", { state: { userName: userName } });
+      navigate("/game", { state: { userName: userName.trim() } });
     } else {
       setUserNameEmptyError(true);
     }
